@@ -1,24 +1,38 @@
 <template>
 <div>
-    <LikeHeader></LikeHeader>
-    <h2>{{ number }}</h2>
-    <LikeNumber :totalNumber="number" v-on:my-click="incrementNumber"></LikeNumber>
-    <LikeNumber :total-number="number"></LikeNumber>
+    <LikeHeader>
+      <h3>はじめまして</h3>
+    </LikeHeader>
+    
+    <LikeNumber :totalNumber="number" @my-click="incrementNumber"></LikeNumber>
+
+  <button @click="currentComponent = 'Home'">Home</button>
+  <button @click="currentComponent = 'About'">About</button>
+  <keep-alive>
+    <component :is="currentComponent"></component>
+  </keep-alive>
+  
 </div> 
 
 </template>
 
 <script>
 import LikeHeader from "./components/LikeHeader.vue";
+import About from "./components/About.vue";
+import Home from "./components/Home.vue";
+
 
 export default {
   data(){
     return {
-      number: 15
+      number: 15,
+      currentComponent: "Home"
     }
   },
   components:{
-    LikeHeader
+    LikeHeader,
+    About,
+    Home
   },
   methods:{
     incrementNumber(value){
@@ -32,6 +46,9 @@ export default {
 <style scoped>
 div{
   border: 1px solid blue;
+}
+h1{
+  color: red;
 }
 
 </style>
