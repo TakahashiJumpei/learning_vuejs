@@ -11,6 +11,18 @@
   <keep-alive>
     <component :is="currentComponent"></component>
   </keep-alive>
+
+  <div>
+    
+    <h2>イベントのフォーム</h2>
+    <EventTitle v-model="eventData.title"></EventTitle>
+
+    <label for="maxNumber">最大人数</label>
+    <input id="maxNumber" type="number" v-model.number="eventData.maxNumber">
+    <p>{{typeof eventData.maxNumber}}</p>
+  </div>
+  
+
   
 </div> 
 
@@ -20,19 +32,24 @@
 import LikeHeader from "./components/LikeHeader.vue";
 import About from "./components/About.vue";
 import Home from "./components/Home.vue";
-
+import EventTitle from "./components/EventTitle.vue";
 
 export default {
   data(){
     return {
       number: 15,
-      currentComponent: "Home"
+      currentComponent: "Home",
+      eventData:{
+        title:"タイトル",
+        maxNumber:0
+      }
     }
   },
   components:{
     LikeHeader,
     About,
-    Home
+    Home,
+    EventTitle
   },
   methods:{
     incrementNumber(value){
@@ -43,12 +60,3 @@ export default {
 </script>
 
 
-<style scoped>
-div{
-  border: 1px solid blue;
-}
-h1{
-  color: red;
-}
-
-</style>
